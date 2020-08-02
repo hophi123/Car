@@ -1,0 +1,35 @@
+.main {
+    background-color: #E8E8E8;
+    height: 300px;
+    width: 1500px;
+}
+
+.container {
+    width: 1500px;
+}
+
+.car-body table,
+th,
+td {
+    border: 1px solid;
+}
+
+.car-body table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+    background-color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #F2F2F2;
+}
+
+
+/* th {
+    width: 100px;
+} */
+
+.tr-header {
+    background-color: #F2F2F2 !important;
+}

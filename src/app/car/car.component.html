@@ -1,1 +1,81 @@
-<p>car works!</p>
+<div class="main">
+    <div class="container">
+        <div class="car-body">
+            <table>
+                <tr class="tr-header">
+                    <th>Type</th>
+                    <th>Company</th>
+                    <th>Vessel</th>
+                    <th colspan="10">Book ID</th>
+                </tr>
+                <tr class="tr-header">
+                    <th></th>
+                    <th>Loading</th>
+                    <th>Discharge</th>
+                    <th>ETC</th>
+                    <th>ETA</th>
+                    <th>Payment Type</th>
+                    <th>Roro Container</th>
+                    <th>Yard & Forwarder</th>
+                    <th>Shipper</th>
+                    <th colspan="3">IV No.</th>
+                </tr>
+                <tr class="tr-header">
+                    <th colspan="2"></th>
+                    <th>Matter#</th>
+                    <th>Date in Yard</th>
+                    <th>Car Name</th>
+                    <th>Vin No.</th>
+                    <th>Booking Day</th>
+                    <th>EC</th>
+                    <th>Parking Day</th>
+                    <th>Remarks</th>
+                    <th>Customer(end)</th>
+                    <th>Inspection Company</th>
+                </tr>
+                <ng-container *ngFor="let company of listCompanies">
+                    <tr (click)="getTransportByCompanyId(company.id)">
+                        <td>{{company.type}}</td>
+                        <td>{{company.company}}</td>
+                        <td>{{company.vessel}}</td>
+                        <td colspan="10">{{company.book_id}}</td>
+                    </tr>
+                    <ng-container *ngIf="isShowTransport && idCompany == company.id">
+                        <ng-container *ngFor="let transport of listTransportById">
+                            <tr (click)="getCarByTransportId(transport.id, company.id)">
+                                <td></td>
+                                <td>{{transport.loading}}</td>
+                                <td>{{transport.discharge}}</td>
+                                <td>{{transport.etd}}</td>
+                                <td>{{transport.eta}}</td>
+                                <td>{{transport.payment_type}}</td>
+                                <td>{{transport.roro_container}}</td>
+                                <td>{{transport.yard_forwarder}}</td>
+                                <td>{{transport.shipper}}</td>
+                                <td colspan="3">{{transport.iv_no}}</td>
+                            </tr>
+                            <ng-container *ngIf="isShowCar && idTransport == transport.id && idCompany == company.id">
+                                <ng-container *ngFor="let car of listCars">
+                                    <tr>
+                                        <td colspan="2"></td>
+                                        <td>{{ car.matter }}</td>
+                                        <td>{{ car.date_in_yard }}</td>
+                                        <td>{{ car.car }}</td>
+                                        <td>{{ car.vin_no }}</td>
+                                        <td>{{ car.booking_day }}</td>
+                                        <td>{{ car.EC }}</td>
+                                        <td>{{ car.parking_day }}</td>
+                                        <td>{{ car.remarks }}</td>
+                                        <td>{{ car.customer }}</td>
+                                        <td>{{ car.inspection_company }}</td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+
+            </table>
+        </div>
+    </div>
+</div>
