@@ -1,5 +1,6 @@
 <div class="main">
-    <div class="container">
+    <div [class]="show()">
+        <button (click)="clickButton(1,0)">Add new</button>
         <div class="car-body">
             <table>
                 <tr class="tr-header">
@@ -35,16 +36,16 @@
                 </tr>
                 <ng-container *ngFor="let company of listCompanies">
                     <tr (click)="getTransportByCompanyId(company.id)">
-                        <td>{{company.type}}</td>
+                        <td><span *ngIf="isShowTransport[company.id]">▲</span><span *ngIf="!isShowTransport[company.id]">▼</span>{{company.type}}</td>
                         <td>{{company.company}}</td>
                         <td>{{company.vessel}}</td>
                         <td colspan="10">{{company.book_id}}</td>
                     </tr>
-                    <ng-container *ngIf="isShowTransport && idCompany == company.id">
-                        <ng-container *ngFor="let transport of listTransportById">
+                    <ng-container *ngIf="isShowTransport[company.id]">
+                        <ng-container *ngFor="let transport of listTransportById[company.id]">
                             <tr (click)="getCarByTransportId(transport.id, company.id)">
                                 <td></td>
-                                <td>{{transport.loading}}</td>
+                                <td><span *ngIf="isShowCar[transport.id]">▲</span><span *ngIf="!isShowCar[transport.id]">▼</span>{{transport.loading}}</td>
                                 <td>{{transport.discharge}}</td>
                                 <td>{{transport.etd}}</td>
                                 <td>{{transport.eta}}</td>
@@ -54,9 +55,9 @@
                                 <td>{{transport.shipper}}</td>
                                 <td colspan="3">{{transport.iv_no}}</td>
                             </tr>
-                            <ng-container *ngIf="isShowCar && idTransport == transport.id && idCompany == company.id">
-                                <ng-container *ngFor="let car of listCars">
-                                    <tr>
+                            <ng-container *ngIf="isShowCar[transport.id]">
+                                <ng-container *ngFor="let car of listCarById[transport.id]">
+                                    <tr [ngStyle]="{'background-color': isShowPopup == true && car.id == idStyle ? '#0460D3' : ''}" (click)="clickButton(2, car.id)">
                                         <td colspan="2"></td>
                                         <td>{{ car.matter }}</td>
                                         <td>{{ car.date_in_yard }}</td>
@@ -77,5 +78,47 @@
 
             </table>
         </div>
+    </div>
+    <div *ngIf="isShowPopup" class="popup">
+        <button class="button-x" (click)="isShowPopup=false">X</button>
+        <form>
+            <p>
+                <label>Transport:</label>
+                <select [(ngModel)]="carInfo.transport_id" name="carInfo.transport_id" [disabled]="isShowEdit">
+                        <option *ngFor="let transport of listTransports" value="{{ transport.id }}">{{transport.loading}}</option>
+                </select>
+            </p>
+            <p>
+                <label>Matter:</label><input type="text" name="carInfo.matter" [(ngModel)]="carInfo.matter"><br>
+            </p>
+            <p>
+                <label>Date in Yard:</label><input type="text" name="carInfo.date_in_yard" [(ngModel)]=" carInfo.date_in_yard "><br>
+            </p>
+            <p>
+                <label>Car Name:</label><input type="text " name="carInfo.car " [(ngModel)]="carInfo.car "><br>
+            </p>
+            <p>
+                <label>Vin No:</label><input type=" text " name="carInfo.vin_no " [(ngModel)]="carInfo.vin_no "><br>
+            </p>
+            <p>
+                <label>Booking Day:</label><input type="date " name="carInfo.booking_day " [(ngModel)]="carInfo.booking_day "><br>
+            </p>
+            <p>
+                <label>EC:</label><input type="text " name="carInfo.EC " [(ngModel)]="carInfo.EC "><br>
+            </p>
+            <p>
+                <label>Parking Day:</label><input type="text " name="carInfo.parking_day " [(ngModel)]="carInfo.parking_day "><br>
+            </p>
+            <p>
+                <label>Remarks:</label><input type=" text " name="carInfo.remarks " [(ngModel)]="carInfo.remarks "><br>
+            </p>
+            <p>
+                <label>Customer(end):</label><input type="text " name="carInfo.customer " [(ngModel)]="carInfo.customer "><br>
+            </p>
+            <p>
+                <label>Inspection Company:</label><input type="date " name="carInfo.inspection_company " [(ngModel)]="carInfo.inspection_company "><br>
+            </p>
+        </form>
+        <button class=" button-save ">Save</button>
     </div>
 </div>

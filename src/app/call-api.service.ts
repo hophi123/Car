@@ -10,15 +10,23 @@ export class CallApiService {
   constructor(private http: HttpClient) { }
 
   getAllCompany() {
-    return this.http.get(`${config.hostServer}/companies`)
+    return this.http.get(`${config.hostServer}/companies`);
+  }
+
+  getAllTransport(){
+    return this.http.get(`${config.hostServer}/transports`);
+  }
+
+  getAllCar(){
+    return this.http.get(`${config.hostServer}/cars`);
   }
 
   getTransportByCompanyId(id: number) {
-    return this.http.get(`${config.hostServer}/transportsByCompanyId/` +id)
+    return this.http.get(`${config.hostServer}/transportsByCompanyId/` +id);
   }
 
   getCarByTransportId(id: number){
-    return this.http.get(`${config.hostServer}/carsByTransportId/` +id)
+    return this.http.get(`${config.hostServer}/carsByTransportId/` +id);
   }
 
 }

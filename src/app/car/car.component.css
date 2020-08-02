@@ -1,35 +1,118 @@
-.main {
-    background-color: #E8E8E8;
-    height: 300px;
-    width: 1500px;
-}
-
-.container {
-    width: 1500px;
-}
-
-.car-body table,
-th,
-td {
-    border: 1px solid;
-}
-
-.car-body table {
-    border-collapse: collapse;
-    width: 100%;
-    text-align: left;
-    background-color: white;
-}
-
-tr:nth-child(odd) {
-    background-color: #F2F2F2;
-}
-
-
-/* th {
-    width: 100px;
-} */
-
-.tr-header {
-    background-color: #F2F2F2 !important;
-}
+    .main {
+        background-color: #E8E8E8;
+        min-height: 600px;
+    }
+    
+    .container {
+        padding-bottom: 50px;
+    }
+    
+    .container-show {
+        background-color: #E8E8E8;
+        width: 75%;
+        float: left;
+    }
+    
+    th,
+    td {
+        font-family: inherit;
+        font-size: small;
+    }
+    
+    .car-body table,
+    th,
+    td {
+        border: 2px solid #D4D4D4;
+    }
+    
+    .car-body table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: left;
+        margin-left: 5px;
+        background-color: white;
+    }
+    
+    tr:nth-child(odd) {
+        background-color: #F2F2F2;
+    }
+    
+    th {
+        width: 100px;
+    }
+    
+    .tr-header {
+        background-color: #F2F2F2 !important;
+    }
+    
+    span {
+        margin-right: 5px;
+    }
+    
+    button {
+        background-color: white;
+        height: 30px;
+        border: none;
+        margin-left: 5px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        font-family: inherit;
+        font-size: small;
+    }
+    
+    .popup {
+        float: right;
+        width: 24.8%;
+        background-color: #E8E8E8;
+        border-left: 2.3px solid #8797B8;
+    }
+    
+    .button-x {
+        display: inline-block;
+        text-align: center;
+        margin-left: 92%;
+        margin-top: 10px;
+        background-color: white;
+        border: none;
+    }
+    
+    .button-save {
+        display: inline-block;
+        text-align: center;
+        margin-left: 86%;
+        margin-top: 10px;
+        height: 23px;
+        background-color: white;
+        border: none;
+    }
+    
+    .popup form {
+        display: table;
+        margin-left: 10px;
+    }
+    
+    .popup form p {
+        display: table-row;
+    }
+    
+    .popup form input {
+        display: table-cell;
+        margin-bottom: 15px;
+        margin-left: 0px;
+        width: 140px;
+    }
+    
+    .popup form select {
+        display: table-cell;
+        margin-bottom: 15px;
+        height: 24px;
+        margin-left: 0px;
+        width: 147px;
+        background-color: white;
+    }
+    
+    .popup form label {
+        display: table-cell;
+        font-family: inherit;
+        font-size: small;
+    }
