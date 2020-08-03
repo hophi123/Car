@@ -6,17 +6,19 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CarComponent } from './car/car.component';
 import { AppRoutingModule } from './app-routing.module';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarComponent
+    CarComponent,
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

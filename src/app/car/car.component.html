@@ -63,9 +63,9 @@
                                         <td>{{ car.date_in_yard }}</td>
                                         <td>{{ car.car }}</td>
                                         <td>{{ car.vin_no }}</td>
-                                        <td>{{ car.booking_day }}</td>
+                                        <td>{{ car.booking_day | date:"yyyy/MM/dd" }}</td>
                                         <td>{{ car.EC }}</td>
-                                        <td>{{ car.parking_day }}</td>
+                                        <td>{{ car.parking_day | date:"yyyy/MM/dd" }}</td>
                                         <td>{{ car.remarks }}</td>
                                         <td>{{ car.customer }}</td>
                                         <td>{{ car.inspection_company }}</td>
@@ -101,13 +101,13 @@
                 <label>Vin No:</label><input type=" text " name="carInfo.vin_no " [(ngModel)]="carInfo.vin_no "><br>
             </p>
             <p>
-                <label>Booking Day:</label><input type="date " name="carInfo.booking_day " [(ngModel)]="carInfo.booking_day "><br>
+                <label>Booking Day:</label><input type="date " name="carInfo.booking_day " [ngModel]="carInfo.booking_day " (ngModelChange)="carInfo.booking_day=$event"><br>
             </p>
             <p>
                 <label>EC:</label><input type="text " name="carInfo.EC " [(ngModel)]="carInfo.EC "><br>
             </p>
             <p>
-                <label>Parking Day:</label><input type="text " name="carInfo.parking_day " [(ngModel)]="carInfo.parking_day "><br>
+                <label>Parking Day:</label><input type="text " name="carInfo.parking_day " [(ngModel)]="carInfo.parking_day"><br>
             </p>
             <p>
                 <label>Remarks:</label><input type=" text " name="carInfo.remarks " [(ngModel)]="carInfo.remarks "><br>
@@ -119,6 +119,6 @@
                 <label>Inspection Company:</label><input type="date " name="carInfo.inspection_company " [(ngModel)]="carInfo.inspection_company "><br>
             </p>
         </form>
-        <button class=" button-save ">Save</button>
+        <button class=" button-save " (click)="isShowEdit ? editCar() : addCar()">Save</button>
     </div>
 </div>

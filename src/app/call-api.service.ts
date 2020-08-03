@@ -29,4 +29,12 @@ export class CallApiService {
     return this.http.get(`${config.hostServer}/carsByTransportId/` +id);
   }
 
+  addCar(body: JSON){
+    return this.http.post(`${config.hostServer}/car`, body);
+  }
+
+  editCar(body: JSON, id: number){
+    return this.http.put(`${config.hostServer}/car/` +id, body);
+  }
+
 }

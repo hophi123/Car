@@ -27,7 +27,7 @@
     
     .car-body table {
         border-collapse: collapse;
-        width: 100%;
+        width: 99.%;
         text-align: left;
         margin-left: 5px;
         background-color: white;
@@ -98,7 +98,7 @@
     .popup form input {
         display: table-cell;
         margin-bottom: 15px;
-        margin-left: 0px;
+        margin-left: 10px;
         width: 140px;
     }
     
@@ -106,7 +106,7 @@
         display: table-cell;
         margin-bottom: 15px;
         height: 24px;
-        margin-left: 0px;
+        margin-left: 10px;
         width: 147px;
         background-color: white;
     }

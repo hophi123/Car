@@ -12,15 +12,10 @@ export class CarComponent implements OnInit {
   idTransport: any;
   isShowPopup = false;
   isShowEdit = false;
-  cars: any;
   listCars: any;
-  companies: any;
   listCompanies: any;
-  trasports: any;
   listTransports: any;
-  transportById: any
   listTransportById = [];
-  carById: any;
   carInfo: any;
   listCarById = [];
   isShowTransport = [];
@@ -40,8 +35,7 @@ export class CarComponent implements OnInit {
 
   getAllCompany() {
     this.callApi.getAllCompany().subscribe(res => {
-      this.companies = res;
-      this.listCompanies = this.companies.data;
+      this.listCompanies = res['data'];
     }, err => {
       console.log(err);
     })
@@ -49,8 +43,7 @@ export class CarComponent implements OnInit {
 
   getAllTransport() {
     this.callApi.getAllTransport().subscribe(res => {
-      this.trasports = res;
-      this.listTransports = this.trasports.data;
+      this.listTransports = res['data'];
     }, err => {
       console.log(err);
     })
@@ -58,8 +51,7 @@ export class CarComponent implements OnInit {
 
   getAllCar() {
     this.callApi.getAllCar().subscribe(res => {
-      this.cars = res;
-      this.listCars = this.cars.data;
+      this.listCars = res['data'];
     }, err => {
       console.log(err);
     })
@@ -68,8 +60,7 @@ export class CarComponent implements OnInit {
   getTransportByCompanyId(id: number) {
 
     this.callApi.getTransportByCompanyId(id).subscribe(res => {
-      this.transportById = res;
-      this.listTransportById[id] = this.transportById.data;
+      this.listTransportById[id] = res['data'];
     }, err => {
       console.log(err);
     })
@@ -84,8 +75,7 @@ export class CarComponent implements OnInit {
 
   getCarByTransportId(idTransport: number, idCompany: number) {
     this.callApi.getCarByTransportId(idTransport).subscribe(res => {
-      this.carById = res;
-      this.listCarById[idTransport] = this.carById.data;
+      this.listCarById[idTransport] = res['data'];
     }, err => {
       console.log(err);
     })
@@ -101,7 +91,7 @@ export class CarComponent implements OnInit {
     this.key = key;
     this.idStyle = id;
     this.isShowPopup = true;
-    if(this.key == 1){
+    if (this.key == 1) {
       this.carInfo = {
         transport_id: '',
         matter: '',
@@ -117,16 +107,47 @@ export class CarComponent implements OnInit {
       }
       this.isShowEdit = false;
     }
-    if(this.key==2){
-      this.carInfo = this.listCars[id-1];
+    if (this.key == 2) {
+      this.carInfo = this.listCars[id - 1];
       this.isShowEdit = true;
     }
   }
 
-  show(){
-    if(this.isShowPopup){
+  addCar() {
+    const body = this.carInfo;
+    console.log(body);
+
+    this.callApi.addCar(body).subscribe(res => {
+      console.log(res);
+      this.getAllCar();
+      this.getCarByTransportId(body.transport_id, body.id);
+      this.isShowCar[this.carInfo.transport_id] = true;
+    }, err => {
+      console.log(err);
+      const messageErr = err.error.meta.message;
+      alert(messageErr)
+    });
+  }
+
+  editCar() {
+    const body = this.carInfo;
+    const id = this.carInfo.id;
+    
+    this.callApi.editCar(body, id).subscribe(res => {
+      console.log(res);
+      this.getCarByTransportId(body.transport_id, body.id);
+      this.isShowCar[this.carInfo.transport_id] = true;
+    }, err => {
+      console.log(err);
+      const messageErr = err.error.meta.message;
+      alert(messageErr)
+    });
+  }
+
+  show() {
+    if (this.isShowPopup) {
       return 'container-show';
-    }else{
+    } else {
       return 'container';
     }
   }
